@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="slider-container">
+            <div class="slider-points-row">
+                <div class="points-item">1</div>
+                <div class="points-line"></div>
+
+                <div class="points-item">2</div>
+                <div class="points-line"></div>
+
+                <div class="points-item">3</div>
+                <div class="points-line"></div>
+
+                <div class="points-item">4</div>
+                <div class="points-line"></div>
+
+                <div class="points-item">5</div>
+            </div>
+
+            <div class="slider-points-text-content">
+                <div class="slider-points-text-item">
+                    <p>1</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque vitae, corrupti tempore pariatur, perspiciatis placeat necessitatibus omnis sit nemo quasi dolor a soluta neque blanditiis culpa officia praesentium consequatur voluptatibus!</p>
+                </div>
+
+                <div class="slider-points-text-item">
+                    <p>2</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque vitae, corrupti tempore pariatur, perspiciatis placeat necessitatibus omnis sit nemo quasi dolor a soluta neque blanditiis culpa officia praesentium consequatur voluptatibus!</p>
+                </div>
+
+                <div class="slider-points-text-item">
+                    <p>3</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque vitae, corrupti tempore pariatur, perspiciatis placeat necessitatibus omnis sit nemo quasi dolor a soluta neque blanditiis culpa officia praesentium consequatur voluptatibus!</p>
+                </div>
+
+                <div class="slider-points-text-item">
+                    <p>4</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque vitae, corrupti tempore pariatur, perspiciatis placeat necessitatibus omnis sit nemo quasi dolor a soluta neque blanditiis culpa officia praesentium consequatur voluptatibus!</p>
+                </div>
+
+                <div class="slider-points-text-item">
+                    <p>5</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque vitae, corrupti tempore pariatur, perspiciatis placeat necessitatibus omnis sit nemo quasi dolor a soluta neque blanditiis culpa officia praesentium consequatur voluptatibus!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Отримання всіх елементів "points-item" і "points-line"
+            var pointsItems = document.querySelectorAll('.points-item');
+            var pointsLines = document.querySelectorAll('.points-line');
+            var textItems = document.querySelectorAll('.slider-points-text-item');
+
+            // Задання першому елементу активного стану
+            setActive(0);
+
+            // Додаємо обробник подій для кожного "points-item"
+            pointsItems.forEach(function(item, index) {
+                item.addEventListener('click', function() {
+                    // Задаємо активний стан для вибраного елемента та його попередників
+                    setActive(index);
+                });
+            });
+
+            function setActive(index) {
+                // Знімаємо активний стан для всіх елементів
+                pointsItems.forEach(function(item, i) {
+                    item.style.border = '1px solid black';
+                    // Задаємо активний стан для вибраного елемента та його попередників
+                    if (i <= index) {
+                        item.style.border = '1px solid red';
+                    }
+                });
+
+                pointsLines.forEach(function(line, i) {
+                    line.style.borderBottom = '1px solid black';
+                    // Задаємо активний стан для вибраного елемента та його попередників
+                    if (i <= index) {
+                        line.style.borderBottom = '1px solid red';
+                    }
+                });
+
+                textItems.forEach(function(textItem) {
+                    textItem.style.display = 'none';
+                });
+
+                // Задаємо активний стан для вибраного текстового блоку
+                textItems[index].style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
